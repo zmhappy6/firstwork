@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+	
+	<bean id="login" class="com.zm.control.LoginController">
+	  <property name="dao">
+	    <ref bean="userdao"/>
+	  </property>
+	  <property name="voteDao">
+	    <ref bean="voteDao"/>
+	  </property>
+	 <property name="successView">
+	   <value>WEB-INF/admin/manage</value>
+	 </property>
+	  <property name="formView">
+	   <value>index</value>
+	 </property>
+	 <property name="userView">
+	   <value>WEB-INF/user/task</value>
+	 </property>
+	</bean>
+	<bean id="operate" class="com.zm.control.Manage">
+	  <property name="methodNameResolver">
+	     <ref bean="paraMethodResolver"/>
+	  </property>
+	  <property name="voteDao">
+	    <ref bean="voteDao"/>
+	  </property>
+	  <property name="voteItemDao">
+	    <ref bean="voteItemDao"/>
+	  </property>
+	  <property name="freshView">
+	    <value>/WEB-INF/admin/manage</value>
+	  </property>
+	  <property name="updateView">
+	    <value>/WEB-INF/admin/update</value>
+	  </property>
+	</bean>
+	<bean id="voteItem" class="com.zm.control.VoteItemController">
+	 <property name="methodNameResolver">
+	     <ref bean="paraMethodResolver"/>
+	  </property>
+	    <property name="voteDao">
+	    <ref bean="voteDao"/>
+	  </property>
+	  <property name="voteItemDao">
+	    <ref bean="voteItemDao"/>
+	  </property>
+	   <property name="updateView">
+	    <value>/WEB-INF/admin/updateItem</value>
+	  </property>
+	</bean>
+	  <bean id="display" class="com.zm.control.PictureShow">
+	 <property name="methodNameResolver">
+	     <ref bean="paraMethodResolver"/>
+	  </property>
+	<property name="voteItemDao">
+	    <ref bean="voteItemDao"/>
+	</property>
+	  <property name="show">
+	   <value>/WEB-INF/admin/show</value>
+	  </property>
+	</bean>
+	<bean id="joinVote" class="com.zm.control.VoteController">
+	<property name="methodNameResolver">
+	     <ref bean="paraMethodResolver"/>
+	  </property>
+	   <property name="voteItemDao">
+	    <ref bean="voteItemDao"/>
+	</property>
+	    <property name="voteDao">
+	    <ref bean="voteDao"/>
+	  </property>
+	  <property name="ipDao">
+	    <ref bean="ipDao"/>
+	  </property>
+	  <property name="toVote">
+	   <value>/WEB-INF/user/toVote</value>
+	  </property>
+	   <property name="userView">
+	   <value>WEB-INF/user/task</value>
+	 </property>
+	 
+	</bean>
+</beans>
